@@ -12,9 +12,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        // Este andler permite manejar un delay o "setTimeOut", y generar un callback para que se ejecute al terminar el tiempo
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                // Cuando pasen los 3 segundos, pasamos a la actividad principal de la aplicación
+                // Al pasar msDuration se ejecutará el siguiente código
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

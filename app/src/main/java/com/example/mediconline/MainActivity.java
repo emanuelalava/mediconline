@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         if (v.getId() == R.id.btnLogin) {
             Log.d("mensaje", "ïngreso");
         } else if (v.getId() == R.id.btnRegistro) {
+
         }
     }
 }
-}
+

@@ -3,6 +3,7 @@ package com.example.mediconline;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -24,7 +25,7 @@ public class formulario_registro extends AppCompatActivity {
 
     private void addNotification(){
         NotificationCompat.Builder builder=
-                new NotificationCompat.Builder(this)
+                new NotificationCompat.Builder(this,"chmediconline")
                 .setSmallIcon(R.drawable.aa)
                 .setContentTitle("Se ha registrado con éxito")
                 .setContentText("Revise su correo electrónico en los próximos 2 días")
@@ -38,7 +39,18 @@ public class formulario_registro extends AppCompatActivity {
         PendingIntent pendingIntent= PendingIntent.getActivity(this,0,notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(pendingIntent);
         NotificationManager manager=(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(0,builder.build());
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel ch = new NotificationChannel("chmediconline","Mediconline",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            if (manager != null) {
+                manager.createNotificationChannel(ch);
+                manager.notify(0, builder.build());
+            }
+        }
+        else {
+            manager.notify(0, builder.build());
+        }
     }
 }
